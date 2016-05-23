@@ -1,0 +1,47 @@
+{% extends 'cycleSharing/base.html' %}
+
+
+{% block main %}
+<div class="jumbotron container-fluid text-center">
+<h1>Current Booking</h1>
+
+{% if not set %}
+    <div class="center-block text-center" style="width:900px">
+    <table class="table">
+    <tr style="background-color:lightgrey">
+        <th style="text-align:center">Index</th>
+        <th style="text-align:center">Cycle ID</th>
+        <th style="text-align:center">From</th>
+    </tr>
+    {% for obj in objlist %}
+       <tr>
+            <td> {{forloop.counter}} </td>
+            <td> {{ obj.cycleid }} </td>
+            <td> {{ obj.fromlocation }} </td>
+       </tr>
+    {% endfor %}
+    </table>
+    </div>
+{% else %}
+    <div class="center-block text-center" style="width:900px">
+    <table class="table">
+    <tr style="background-color:lightgrey">
+        <th style="text-align:center">Index</th>
+        <th style="text-align:center">User</th>
+        <th style="text-align:center">Cycle ID</th>
+        <th style="text-align:center">From</th>
+    </tr>
+    {% for obj in objlist %}
+       <tr>
+            <td> {{forloop.counter}} </td>
+            <td> {{ obj.studentname }} </td>
+            <td> {{ obj.cycleid }} </td>
+            <td> {{ obj.fromlocation }} </td>
+       </tr>
+    {% endfor %}
+    </table>
+    </div>
+
+{% endif %}
+</div>
+{% endblock %}

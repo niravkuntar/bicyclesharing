@@ -1,0 +1,20 @@
+{% extends 'cycleSharing/base.html' %}
+
+{% block main %}
+    <div class="jumbotron container-fluid">
+      <div class="center-block text-center" style="width:200px">
+        <h4>Enter user detials</h4>
+          <form enctype="multipart/form-data" method="POST" action="/login/signup/" class="form-group">
+            {% csrf_token %}
+            <p><input type="text" class="form-control" name="username" value="" placeholder="Username"></p>
+            <p><input type="password" class="form-control" name="password" value="" placeholder="Password"></p>
+            <p><input type="text" class="form-control" name="fname" value="" placeholder="First Name"></p>
+              <p><input type="text" class="form-control" name="lname" value="" placeholder="Last Name"></p>
+            <p><input type="text" class="form-control" name="email" value="" placeholder="Email"></p>
+            <p><input type="submit" class="btn btn-primary" name="commit" value="Sign Up"></p>
+          </form>
+      </div>
+    </div>
+{% endblock %}
+
+

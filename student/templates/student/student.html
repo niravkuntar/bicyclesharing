@@ -1,0 +1,112 @@
+{% extends 'cycleSharing/base.html' %}
+
+{% block main %}
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var filter_cycle_select = function() {
+            var filter = $("#id_hub_select").find(":selected").text();
+            $("#id_cycle_select > option").each(function() {
+                if ($(this).data('hubname') == filter) {
+                    console.log("yeah");
+                    $(this).show();
+                } else {
+                    console.log("no");
+                    $(this).hide();
+                }
+                $('select').val(filter);
+            })
+        };
+        $('#id_hub_select').change(filter_cycle_select);
+        filter_cycle_select();
+    });
+    </script>
+
+<div class="jumbotron container-fluid text-center">
+<h1>Bicycle Sharing</h1>
+
+<div class="center-block text-center" style="width:900px">
+<table class="table">
+<tr style="background-color:lightgrey">
+    <th style="text-align:center">Index</th>
+    <th style="text-align:center">Hub Name</th>
+    <th style="text-align:center">Real time availability</th>
+</tr>
+{% for key, value in available.iteritems %}
+   <tr>
+        <td> {{forloop.counter}} </td>
+        <td> {{ key }} </td>
+        <td> {{ value }} </td>
+   </tr>
+{% endfor %}
+</table>
+</div>
+
+<div class="center-block text-center" style="width:900px">
+    <form method="POST" action="/student/">
+    {% csrf_token %}
+        <table class="table">
+            <tr>
+                <th><lable for="bicycle"> Book Bicycle </lable></th>
+                <th><lable for="bicycle"> Select Pickup Hub </lable></th>
+                <td>
+                    <select list="fromhub"  name="fromlocation" id="id_hub_select">
+                        {% for key, value in available.iteritems %}
+                            <option value={{ key }}>{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <th><lable for="bicycle"> Select Cycle to Pickup </lable></th>
+                <td>
+                     <select name="cycleid" id="id_cycle_select">
+                         {% for obj in hub %}
+                             {% if obj.available %}
+                                <option value="{{ obj.cycleid }}" data-hubname="{{ obj.hubid.name }}" name="cycleid">
+                                    {{ obj.cycleid }}
+                                </option>
+                             {% endif %}
+                         {% endfor %}
+                     </select>
+                </td>
+                <td><input class="btn btn-danger" type="Submit" value="Book"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+<div class="center-block text-center" style="width:900px">
+    <form method="POST" action="/student/">
+    {% csrf_token %}
+        <table class="table">
+            <tr>
+                <th><lable for="bicycle"> Drop Bicycle </lable></th>
+                <th><lable for="bicycle"> Select Drop Hub </lable></th>
+                <td>
+                    <select list="tohub"  name="tolocation" id="tohub">
+                        {% for key, value in available.iteritems %}
+                            <option value={{ key }}>{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <th><lable for="bicycle"> Select Cycle to Drop </lable></th>
+                <td>
+                     <select name="cycledropid">
+                         {% for obj in cyclelist %}
+                            <option value={{ obj.cycleid }} name="cycledropid">{{ obj.cycleid }}</option>
+                         {% endfor %}
+                     </select>
+                </td>
+                <td><input class="btn btn-danger" type="Submit" value="Drop"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'cycleSharing/base.html' %}
+
+
+{% block main %}
+<div class="jumbotron container-fluid text-center">
+<h1>Bicycle Sharing System</h1>
+
+<div class="center-block text-center" style="width:900px">
+<table class="table">
+<tr style="background-color:lightgrey">
+    <th style="text-align:center">Index</th>
+    <th style="text-align:center">Hub Name</th>
+    <th style="text-align:center">Real Time Availability</th>
+</tr>
+{% for obj in available %}
+   <tr>
+        <td> {{forloop.counter}} </td>
+        <td> {{ obj.name }} </td>
+        <td> {{ obj.available }} </td>
+   </tr>
+{% endfor %}
+</table>
+</div>
+</div>
+{% endblock %}

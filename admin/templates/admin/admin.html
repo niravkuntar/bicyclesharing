@@ -1,0 +1,50 @@
+{% extends 'cycleSharing/base.html' %}
+
+
+{% block main %}
+<div class="jumbotron container-fluid text-center">
+<h1>Bicycle Sharing</h1>
+
+<div class="center-block text-center" style="width:900px">
+<table class="table">
+<tr style="background-color:lightgrey">
+    <th style="text-align:center">Index</th>
+    <th style="text-align:center">Hub Name</th>
+    <th style="text-align:center">Real Time Availability</th>
+    <th style="text-align:center">Upcoming Requirement</th>
+</tr>
+{% for key in available %}
+   <tr>
+        <td> {{forloop.counter}} </td>
+        <td> {{ key.name }} </td>
+        <td> {{ key.available }} </td>
+        <td> {{ key.requirement }} </td>
+   </tr>
+{% endfor %}
+</table>
+</div>
+
+
+<div class="center-block text-center" style="width:900px">
+    <form method="POST" action="/admin/">
+    {% csrf_token %}
+        <table class="table">
+            <tr>
+                <th><lable for="setRequirement"> Set Cycle Requirements</lable></th>
+                <td>
+                    <select list="hubs"  name="hubname" id="hubs">
+                        {% for key in available %}
+                            <option>{{ key.name }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td><input name="requirement" type="number" id="requirement" maxlength="150"></td>
+                <td><input class="btn btn-danger" type="Submit" value="Submit"></td>
+        </table>
+    </form>
+</div>
+
+
+
+</div>
+{% endblock %}

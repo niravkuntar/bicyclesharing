@@ -1,0 +1,18 @@
+{% extends 'cycleSharing/base.html' %}
+
+{% block main %}
+    <div class="jumbotron container-fluid text-center">
+      <h1>Bicycle Sharing System</h1>
+	<div class="row">
+	    <div class="col-md-10 col-md-offset-1 white-panel no-padding">
+             <ul valign="middle" align="center">
+                <li> You can login using you LDAP id and book and pickup a cycle from any of the hub location of institute. </li>
+                <li> You can book any number of cycle from one account</li>
+                <li> You can pickup and drop cycle at two different location or at the same location</li>
+            </ul>
+	    </div>
+    </div>
+      <a class="btn btn-primary btn-lg" href="/availability/">View Available Cycles</a>&nbsp;&nbsp;&nbsp;
+      <a class="btn btn-primary btn-lg" href="/login/">Login</a>
+    </div>
+{% endblock %}
