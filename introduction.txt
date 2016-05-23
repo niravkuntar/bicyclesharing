@@ -1,0 +1,15 @@
+Introduction
+
+1. It is an institute level bicycle sharing system which calculates the requirement of cycles at each hub location based on institute time table.
+
+2. We can also consider other factors to decide these requirements like bus schedule, average attendance of each student in a class, average attendance of every class but because of time constraint I stick to the first parameter(institute time table) for calculating requirements.
+
+3. After calculating requirements, distribute the available cycles to each hub according to requirements of that hub.
+
+4. Admin can also manually set requirement of particular hub and this requirement affects the available cycles of that hub
+
+5. Student can book a cycle from any of the hub location and drop it to any of the hub location
+
+6. There are some constraints which I have not considered like what if student does not drop cycle but it just set in the application that he has dropped a cycles at some hub location.
+
+7. Currently, it does not have large scale capability because i have taken only one parameter for calculating the requirements of each hub location but as I mentioned in second point that if we consider other important factors then we can get more accurate requirements at each hub location

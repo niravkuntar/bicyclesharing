@@ -1,0 +1,48 @@
+1. Install python, postgresql, pip
+
+	sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib 
+
+2. Clone the github repository
+
+       git clone https://github.com/niravkuntar/bicyclesharing.git
+
+3. Change directory to cycleSharing and install the packages listed in "requirements.txt".
+
+       cd cycleSharing
+       pip install -r requirements.txt
+
+4. Create a postgresql user and database. Taken from postgresql wiki.
+
+	sudo su - postgres
+	psql
+	CREATE DATABASE cyclesharing;
+	CREATE USER root WITH PASSWORD 'root' CREATEDB;
+	GRANT ALL PRIVILEGES ON DATABASE cyclesharing TO root;
+	exit
+
+5. Import database from dumpfile
+	psql -U root -h localhost -d cyclesharing -f database.sql
+
+6. Edit this cycleSharing/settings.py file (database name, username, password etc.)
+
+7. Create tables using django
+       ./manage.py makemigrations
+       ./manage.py migrate  
+
+
+8. Run the Django server.
+
+       ./manage.py runserver
+
+    By default this runs the server in port 8000, if you want to run this on other post no then 
+	./manage.py runserver 0.0.0.0:'PORT_NO'
+
+8. Credentials of application
+   Admin credentials :  username - root
+                        password - root
+
+   Student credentials :username - user_'I'
+                        password - user_'I'pass
+                        where I is any number from 1 to 50
+                        for example if I=1 then username is 'user_1' and password is 'user_1pass'
+
